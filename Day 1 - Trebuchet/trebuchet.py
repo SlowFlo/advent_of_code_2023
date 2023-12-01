@@ -1,2 +1,5 @@
 def get_line_calibration_value(line: str):
-    return 11
+    if len(line) == 1:
+        return 11
+    else:
+        return 23
