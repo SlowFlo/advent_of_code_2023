@@ -17,3 +17,7 @@ def test_3_digits_is_without_the_middle_one():
 
 def test_has_letters_between_is_ok():
     assert get_line_calibration_value("1abc2") == 12
+
+
+def test_has_letters_on_sides_is_ok():
+    assert get_line_calibration_value("pqr3stu8vwx") == 38
