@@ -1,4 +1,4 @@
-from trebuchet import get_line_calibration_value
+from trebuchet import get_line_calibration_value, get_sum_calibration_values
 
 
 def test_one_digit_is_found_twice():
@@ -26,3 +26,12 @@ def test_has_letters_on_sides_is_ok():
 def test_advanced_examples_are_ok():
     assert get_line_calibration_value("a1b2c3d4e5f") == 15
     assert get_line_calibration_value("treb7uchet") == 77
+
+
+def test_sum_of_multi_line_file_is_ok():
+    txt_file = """1abc2
+pqr3stu8vwx
+a1b2c3d4e5f
+treb7uchet"""
+
+    assert get_sum_calibration_values(txt_file) == 142
