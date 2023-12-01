@@ -21,3 +21,8 @@ def test_has_letters_between_is_ok():
 
 def test_has_letters_on_sides_is_ok():
     assert get_line_calibration_value("pqr3stu8vwx") == 38
+
+
+def test_advanced_examples_are_ok():
+    assert get_line_calibration_value("a1b2c3d4e5f") == 15
+    assert get_line_calibration_value("treb7uchet") == 77
