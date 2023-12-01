@@ -1,7 +1,7 @@
 def get_line_calibration_value(line: str):
     if len(line) == 1:
-        return 11
+        return int(line + line)
     elif len(line) == 2:
-        return 23
+        return int(line)
     else:
-        return 46
+        return int(line[0] + line[-1])

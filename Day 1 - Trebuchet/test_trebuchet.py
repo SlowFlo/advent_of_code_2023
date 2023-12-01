@@ -11,3 +11,4 @@ def test_2_digits_is_the_same():
 
 def test_3_digits_is_without_the_middle_one():
     assert get_line_calibration_value("456") == 46
+    assert get_line_calibration_value("789") == 79
