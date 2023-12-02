@@ -11,7 +11,7 @@ def get_line_calibration_value(line: str):
 
 
 if __name__ == "__main__":
-    with open("input.txt", "r") as file:
+    with open("../input.txt", "r") as file:
         input_text = file.read()
         print(
             "The sum of all calibration values are:",
