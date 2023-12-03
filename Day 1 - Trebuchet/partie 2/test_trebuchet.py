@@ -51,3 +51,15 @@ def test_more_advanced_examples_are_ok():
     assert get_line_calibration_value("4nineeightseven2") == 42
     assert get_line_calibration_value("zoneight234") == 14
     assert get_line_calibration_value("7pqrstsixteen") == 76
+
+
+def test_sum_of_advanced_multi_line_file_is_ok():
+    txt_file = """two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen"""
+
+    assert get_sum_calibration_values(txt_file) == 281
