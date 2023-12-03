@@ -39,3 +39,7 @@ treb7uchet"""
 
 def test_detect_digits_written_with_letters():
     assert get_line_calibration_value("two1nine") == 29
+
+
+def test_two_merged_spelled_out_digits_only_first_one_is_ok():
+    assert get_line_calibration_value("eightwothree") == 83
