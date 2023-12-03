@@ -43,3 +43,11 @@ def test_detect_digits_written_with_letters():
 
 def test_two_merged_spelled_out_digits_only_first_one_is_ok():
     assert get_line_calibration_value("eightwothree") == 83
+
+
+def test_more_advanced_examples_are_ok():
+    assert get_line_calibration_value("abcone2threexyz") == 13
+    assert get_line_calibration_value("xtwone3four") == 24
+    assert get_line_calibration_value("4nineeightseven2") == 42
+    assert get_line_calibration_value("zoneight234") == 14
+    assert get_line_calibration_value("7pqrstsixteen") == 76
