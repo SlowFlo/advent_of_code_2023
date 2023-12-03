@@ -7,43 +7,34 @@ def get_sum_calibration_values(txt_file: str):
 
 def get_line_calibration_value(line: str):
     def replace_with_digit(match_object: re.Match):
-        if match_object.group(0) == "oneight":
-            return "18"
-        elif match_object.group(0) == "twone":
-            return "21"
-        elif match_object.group(0) == "threeight":
-            return "38"
-        elif match_object.group(0) == "fiveight":
-            return "58"
-        elif match_object.group(0) == "sevenine":
-            return "79"
-        elif match_object.group(0) == "eightwo":
-            return "82"
-        elif match_object.group(0) == "eighthree":
-            return "83"
-        elif match_object.group(0) == "nineight":
-            return "98"
-        elif match_object.group(0) == "one":
-            return "1"
+        # keeping one letter on each side for twone => 21 cases
+        if match_object.group(0) == "one":
+            return "o1e"
         elif match_object.group(0) == "two":
-            return "2"
+            return "t2o"
         elif match_object.group(0) == "three":
-            return "3"
+            return "t3e"
         elif match_object.group(0) == "four":
-            return "4"
+            return "f4r"
         elif match_object.group(0) == "five":
-            return "5"
+            return "f5e"
         elif match_object.group(0) == "six":
-            return "6"
+            return "s6x"
         elif match_object.group(0) == "seven":
-            return "7"
+            return "s7n"
         elif match_object.group(0) == "eight":
-            return "8"
+            return "e8t"
         elif match_object.group(0) == "nine":
-            return "9"
+            return "n9e"
 
     line = re.sub(
-        r"oneight|twone|threeight|fiveight|sevenine|eightwo|eighthree|nineight|one|two|three|four|five|six|seven|eight|nine",
+        r"one|two|three|four|five|six|seven|eight|nine",
+        replace_with_digit,
+        line,
+    )
+    # doing once more for the few remaining cases
+    line = re.sub(
+        r"one|two|three|four|five|six|seven|eight|nine",
         replace_with_digit,
         line,
     )
