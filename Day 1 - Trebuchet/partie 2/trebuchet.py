@@ -31,8 +31,7 @@ def get_line_calibration_value(line: str):
         replace_with_digit,
         line,
     )
-    # for index, spelled_out_digit in enumerate(spelled_out_digits, start=1):
-    #     line = line.replace(spelled_out_digit, str(index))
+
     line = "".join(filter(str.isdigit, line))
     if len(line) == 1:
         return int(line + line)
