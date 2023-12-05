@@ -1,4 +1,8 @@
-from cube_conundrum import get_game_colors_minimum, is_game_possible
+from cube_conundrum import (
+    get_game_colors_minimum,
+    is_game_possible,
+    get_sum_of_possible_games_ids,
+)
 
 
 def test_get_each_color_maximum():
@@ -64,4 +68,7 @@ Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
 Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"""
 
-    assert get_sum_of_possible_games_ids(text_file) == 8
+    assert (
+        get_sum_of_possible_games_ids(text_file, {"red": 12, "green": 13, "blue": 14})
+        == 8
+    )

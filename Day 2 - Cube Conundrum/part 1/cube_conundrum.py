@@ -25,3 +25,15 @@ def is_game_possible(bag_content: Dict[str, int], game: str) -> bool:
             game_is_possible = False
 
     return game_is_possible
+
+
+def get_sum_of_possible_games_ids(txt_file: str, bag_content: Dict[str, int]) -> int:
+    sum_of_possible_games_ids = 0
+
+    for line in txt_file.splitlines():
+        game_id, game = line.split(": ")
+        if is_game_possible(bag_content, game):
+            game_id = int(game_id.split()[1])  # ex: "Game 1"
+            sum_of_possible_games_ids += game_id
+
+    return sum_of_possible_games_ids
