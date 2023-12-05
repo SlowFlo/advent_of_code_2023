@@ -27,7 +27,7 @@ def is_game_possible(bag_content: Dict[str, int], game: str) -> bool:
     return game_is_possible
 
 
-def get_sum_of_possible_games_ids(txt_file: str, bag_content: Dict[str, int]) -> int:
+def get_sum_of_possible_games_ids(bag_content: Dict[str, int], txt_file: str) -> int:
     sum_of_possible_games_ids = 0
 
     for line in txt_file.splitlines():
@@ -37,3 +37,14 @@ def get_sum_of_possible_games_ids(txt_file: str, bag_content: Dict[str, int]) ->
             sum_of_possible_games_ids += game_id
 
     return sum_of_possible_games_ids
+
+
+if __name__ == "__main__":
+    with open("../input.txt", "r") as file:
+        input_text = file.read()
+        print(
+            "The sum of all possible games IDs is:",
+            get_sum_of_possible_games_ids(
+                {"red": 12, "green": 13, "blue": 14}, input_text
+            ),
+        )
