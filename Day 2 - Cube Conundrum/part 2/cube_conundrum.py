@@ -45,6 +45,16 @@ def get_power_set_of_cubes(game: str) -> int:
     return math.prod(colors_min.values())
 
 
+def get_sum_of_power_set_of_cubes(txt_file: str) -> int:
+    sum_of_power_set_of_cubes = 0
+
+    for line in txt_file.splitlines():
+        _, game = line.split(": ")
+        sum_of_power_set_of_cubes += get_power_set_of_cubes(game)
+
+    return sum_of_power_set_of_cubes
+
+
 if __name__ == "__main__":
     with open("../input.txt", "r") as file:
         input_text = file.read()
