@@ -14,6 +14,6 @@ if __name__ == "__main__":
     with open("../input.txt", "r") as file:
         input_text = file.read()
         print(
-            "The sum of all calibration values are:",
+            "The sum of all calibration values is:",
             get_sum_calibration_values(input_text),
         )
