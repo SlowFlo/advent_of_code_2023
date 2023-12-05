@@ -64,3 +64,7 @@ if __name__ == "__main__":
                 {"red": 12, "green": 13, "blue": 14}, input_text
             ),
         )
+        print(
+            "The sum of the power of the minimum sets of cubes is:",
+            get_sum_of_power_set_of_cubes(input_text),
+        )
