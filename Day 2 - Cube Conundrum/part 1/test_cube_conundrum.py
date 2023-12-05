@@ -17,3 +17,41 @@ def test_get_each_color_maximum():
     assert get_game_colors_maximum(
         "6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"
     ) == {"blue": 2, "red": 6, "green": 3}
+
+
+def test_can_tell_if_game_is_possible():
+    assert (
+        is_game_possible(
+            {"red": 12, "green": 13, "blue": 14},
+            "3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
+        )
+        == True
+    )
+    assert (
+        is_game_possible(
+            {"red": 12, "green": 13, "blue": 14},
+            "1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue",
+        )
+        == True
+    )
+    assert (
+        is_game_possible(
+            {"red": 12, "green": 13, "blue": 14},
+            "8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red",
+        )
+        == False
+    )
+    assert (
+        is_game_possible(
+            {"red": 12, "green": 13, "blue": 14},
+            "1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red",
+        )
+        == False
+    )
+    assert (
+        is_game_possible(
+            {"red": 12, "green": 13, "blue": 14},
+            "6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green",
+        )
+        == True
+    )
