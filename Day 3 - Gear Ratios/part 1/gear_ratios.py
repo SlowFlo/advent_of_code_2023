@@ -31,3 +31,18 @@ def get_coordinates_to_check(
                 break  # skip remaining lines once the number is found
 
     return coordinates
+
+
+def get_part_numbers(multi_lines_str: str) -> list[int]:
+    coordinates_to_check = get_coordinates_to_check(multi_lines_str)
+    lines = multi_lines_str.splitlines()
+    part_numbers = []
+
+    for number, coordinates in coordinates_to_check.items():
+        for line_coord, char_coord in coordinates:
+            char = lines[line_coord][char_coord]
+            if char != "." and not char.isalnum():
+                part_numbers.append(number)
+                break
+
+    return part_numbers
