@@ -1,4 +1,4 @@
-from gear_ratios import get_coordinates
+from gear_ratios import get_coordinates_to_check
 
 
 def test_detect_coordinates_to_check():
@@ -87,4 +87,4 @@ def test_detect_coordinates_to_check():
         598: ((8, 4), (8, 5), (8, 6), (8, 7), (8, 8), (9, 4), (9, 8)),
     }
 
-    assert get_coordinates(multi_lines_str) == coordinates
+    assert get_coordinates_to_check(multi_lines_str) == coordinates
