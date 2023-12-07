@@ -88,3 +88,18 @@ def test_detect_coordinates_to_check():
     }
 
     assert get_coordinates_to_check(multi_lines_str) == coordinates
+
+
+def test_get_part_numbers():
+    multi_lines_str = """467..114..
+...*......
+..35..633.
+......#...
+617*......
+.....+.58.
+..592.....
+......755.
+...$.*....
+.664.598.."""
+
+    assert get_part_numbers(multi_lines_str) == [467, 35, 633, 617, 592, 755, 664, 598]
