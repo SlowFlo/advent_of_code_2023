@@ -217,11 +217,28 @@ def test_get_part_numbers():
     assert get_part_numbers(multi_lines_str) == [467, 35, 633, 617, 592, 755, 664, 598]
 
 
-def test_get_part_numbers_when_2_numbers_for_one_symbol():
+def test_get_part_numbers_when_2_numbers_for_1_symbol():
     multi_lines_str = """12
-    #3"""
+#3"""
 
     assert get_part_numbers(multi_lines_str) == [12, 3]
+
+    multi_lines_str = """12.34
+..#.."""
+
+    assert get_part_numbers(multi_lines_str) == [12, 34]
+
+
+def test_get_part_numbers_when_1_number_for_2_symbols():
+    multi_lines_str = """#12#"""
+
+    assert get_part_numbers(multi_lines_str) == [12]
+
+
+def test_get_part_numbers_when_no_ok_part_in_string():
+    multi_lines_str = """8....#"""
+
+    assert get_part_numbers(multi_lines_str) == []
 
 
 def test_advanced_test_case():
