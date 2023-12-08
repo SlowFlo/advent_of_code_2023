@@ -22,7 +22,7 @@ def get_check_coords(
 
 def get_coordinates_to_check(
     multi_lines_str: str,
-) -> dict[int, list[tuple[int, int], ...]]:
+) -> dict[int, list[tuple[tuple[int, int]], ...]]:
     numbers = re.findall(r"\d+", multi_lines_str)
     lines = multi_lines_str.splitlines()
 
@@ -44,8 +44,8 @@ def get_part_numbers(multi_lines_str: str) -> list[int]:
     lines = multi_lines_str.splitlines()
     part_numbers = []
 
-    for number, coordinates_lists in coordinates_to_check.items():
-        for coordinates in coordinates_lists:
+    for number, coordinates_list in coordinates_to_check.items():
+        for coordinates in coordinates_list:
             for line_coord, char_coord in coordinates:
                 char = lines[line_coord][char_coord]
                 if char != "." and not char.isalnum():
