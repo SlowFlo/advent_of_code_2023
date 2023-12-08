@@ -241,6 +241,14 @@ def test_get_part_numbers_when_no_ok_part_in_string():
     assert get_part_numbers(multi_lines_str) == []
 
 
+def test_get_part_numbers_when_4_numbers_on_diagonals_for_1_symbol():
+    multi_lines_str = """2.2
+.*.
+1.1"""
+
+    assert get_part_numbers(multi_lines_str) == [2, 2, 1, 1]
+
+
 def test_advanced_test_case():
     multi_lines_str = """12.......*..
 +.........34
