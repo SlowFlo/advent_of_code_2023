@@ -215,3 +215,20 @@ def test_get_part_numbers():
 .664.598.."""
 
     assert get_part_numbers(multi_lines_str) == [467, 35, 633, 617, 592, 755, 664, 598]
+
+
+def test_advanced_test_case():
+    multi_lines_str = """12.......*..
++.........34
+.......-12..
+..78........
+..*....60...
+78..........
+.......23...
+....90*12...
+............
+2.2......12.
+.*.........*
+1.1.......56"""
+
+    assert sum(get_part_numbers(multi_lines_str)) == 413
