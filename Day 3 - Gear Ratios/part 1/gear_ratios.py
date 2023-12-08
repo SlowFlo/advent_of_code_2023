@@ -22,7 +22,7 @@ def get_check_coords(
 
 def get_coordinates_to_check(
     multi_lines_str: str,
-) -> dict[int, tuple[tuple[int, int], ...]]:
+) -> dict[int, list[tuple[int, int], ...]]:
     numbers = re.findall(r"\d+", multi_lines_str)
     lines = multi_lines_str.splitlines()
 
@@ -31,7 +31,8 @@ def get_coordinates_to_check(
     for number in numbers:
         coordinates[int(number)] = []
         for line_coord, line in enumerate(lines):
-            for match in re.finditer(number, line):
+            # We match only if the number is not a part of another number (like 1 in 12)
+            for match in re.finditer(r"(?<!\d)" + number + r"(?!\d)", line):
                 check_coords = get_check_coords(lines, line_coord, match)
                 coordinates[int(number)].append(tuple(check_coords))
 

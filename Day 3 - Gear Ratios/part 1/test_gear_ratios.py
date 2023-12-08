@@ -101,8 +101,7 @@ def test_detect_coordinates_to_check():
 
 
 def test_detect_coordinates_to_check_when_duplicate_numbers():
-    multi_lines_str = """
-467..114..
+    multi_lines_str = """467..114..
 ...*......
 ..35..633.
 ......#...
@@ -283,4 +282,19 @@ def test_advanced_test_case():
 .*.........*
 1.1.......56"""
 
-    assert sum(get_part_numbers(multi_lines_str)) == 413
+    assert get_part_numbers(multi_lines_str) == [
+        12,
+        12,
+        12,
+        12,
+        34,
+        78,
+        78,
+        23,
+        90,
+        2,
+        2,
+        1,
+        1,
+        56,
+    ]
