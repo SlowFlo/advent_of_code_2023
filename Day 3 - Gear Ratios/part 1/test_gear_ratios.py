@@ -202,6 +202,26 @@ def test_detect_coordinates_to_check_when_duplicate_numbers():
     assert get_coordinates_to_check(multi_lines_str) == coordinates
 
 
+def test_get_coordinates_to_check_when_small_number_in_a_bigger_number():
+    multi_lines_str = """12.
++..
+2.2
+.*.
+1.1"""
+
+    assert get_coordinates_to_check(multi_lines_str) == {
+        1: [
+            ((3, 0), (3, 1), (4, 1)),
+            ((3, 1), (3, 2), (4, 1)),
+        ],
+        2: [
+            ((1, 0), (1, 1), (2, 1), (3, 0), (3, 1)),
+            ((1, 1), (1, 2), (2, 1), (3, 1), (3, 2)),
+        ],
+        12: [((0, 2), (1, 0), (1, 1), (1, 2))],
+    }
+
+
 def test_get_part_numbers():
     multi_lines_str = """467..114..
 ...*......
