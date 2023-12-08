@@ -29,12 +29,11 @@ def get_coordinates_to_check(
     coordinates = {}
 
     for number in numbers:
+        coordinates[int(number)] = []
         for line_coord, line in enumerate(lines):
-            match = re.search(number, line)
-            if match:
+            for match in re.finditer(number, line):
                 check_coords = get_check_coords(lines, line_coord, match)
-                coordinates[int(number)] = check_coords
-                break  # skip remaining lines once the number is found
+                coordinates[int(number)].append(tuple(check_coords))
 
     return coordinates
 
@@ -44,12 +43,13 @@ def get_part_numbers(multi_lines_str: str) -> list[int]:
     lines = multi_lines_str.splitlines()
     part_numbers = []
 
-    for number, coordinates in coordinates_to_check.items():
-        for line_coord, char_coord in coordinates:
-            char = lines[line_coord][char_coord]
-            if char != "." and not char.isalnum():
-                part_numbers.append(number)
-                break
+    for number, coordinates_lists in coordinates_to_check.items():
+        for coordinates in coordinates_lists:
+            for line_coord, char_coord in coordinates:
+                char = lines[line_coord][char_coord]
+                if char != "." and not char.isalnum():
+                    part_numbers.append(number)
+                    break
 
     return part_numbers
 
