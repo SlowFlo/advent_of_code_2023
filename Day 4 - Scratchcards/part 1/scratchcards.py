@@ -16,4 +16,7 @@ class Scratchcard:
         )
 
     def get_points(self) -> int:
+        if not self.winning_numbers_i_have:
+            return 0
+
         return 2 ** (len(self.winning_numbers_i_have) - 1)
