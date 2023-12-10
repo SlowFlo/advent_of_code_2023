@@ -14,3 +14,6 @@ class Scratchcard:
         self.winning_numbers_i_have = self.winning_numbers.intersection(
             self.numbers_i_have
         )
+
+    def get_points(self) -> int:
+        return 2 ** (len(self.winning_numbers_i_have) - 1)
