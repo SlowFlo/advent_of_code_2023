@@ -3,8 +3,9 @@ import re
 
 class Scratchcard:
     def __init__(self, card: str):
-        _, winning_numbers, numbers_i_have = re.split(r"[:|]", card)
+        card_id, winning_numbers, numbers_i_have = re.split(r"[:|]", card)
 
+        self.id = int(card_id.split()[1])
         self.winning_numbers = set(
             int(winning_number) for winning_number in winning_numbers.split()
         )
@@ -20,6 +21,11 @@ class Scratchcard:
             return 0
 
         return 2 ** (len(self.winning_numbers_i_have) - 1)
+
+    def get_copies_id(self) -> tuple[int, ...]:
+        return tuple(
+            self.id + index + 1 for index, _ in enumerate(self.winning_numbers_i_have)
+        )
 
 
 class PileOfScratchcards:

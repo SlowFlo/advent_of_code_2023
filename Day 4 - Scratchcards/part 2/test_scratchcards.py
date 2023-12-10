@@ -49,4 +49,4 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"""
 
 def test_get_copied_cards_id():
     card = Scratchcard("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53")
-    assert card.get_copies_id() == [2, 3, 4, 5]
+    assert card.get_copies_id() == (2, 3, 4, 5)
