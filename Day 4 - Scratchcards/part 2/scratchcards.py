@@ -62,3 +62,8 @@ if __name__ == "__main__":
             PileOfScratchcards(input_text).get_total_points(),
             "in total.",
         )
+        print(
+            "At the end I have",
+            sum(PileOfScratchcards(input_text).get_number_of_copies().values()),
+            "cards.",
+        )
