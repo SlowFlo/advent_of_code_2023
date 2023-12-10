@@ -33,3 +33,13 @@ class PileOfScratchcards:
             total_points += card.get_points()
 
         return total_points
+
+
+if __name__ == "__main__":
+    with open("../input.txt", "r") as file:
+        input_text = file.read()
+        print(
+            "The pile of scratchcards is worth",
+            PileOfScratchcards(input_text).get_total_points(),
+            "in total.",
+        )
