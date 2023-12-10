@@ -40,6 +40,19 @@ class PileOfScratchcards:
 
         return total_points
 
+    def get_number_of_copies(self) -> dict[int, int]:
+        number_of_copies = {}
+
+        for card in self.cards:
+            number_of_copies[card.id] = number_of_copies.setdefault(card.id, 0) + 1
+            for _ in range(number_of_copies[card.id]):
+                for copy_id in card.get_copies_id():
+                    number_of_copies[copy_id] = (
+                        number_of_copies.setdefault(copy_id, 0) + 1
+                    )
+
+        return number_of_copies
+
 
 if __name__ == "__main__":
     with open("../input.txt", "r") as file:
