@@ -1,3 +1,4 @@
+import math
 import re
 from itertools import product
 
@@ -49,6 +50,27 @@ def get_part_numbers(multi_lines_str: str) -> list[int]:
                     break
 
     return part_numbers
+
+
+def get_gears_ratios(multi_lines_str: str) -> list[int]:
+    coordinates_to_check = get_coordinates_to_check(multi_lines_str)
+    lines = multi_lines_str.splitlines()
+
+    potential_gears_coord = {}
+    gears_ratios = []
+    for number, coordinates_list in coordinates_to_check.items():
+        for coordinates in coordinates_list:
+            for line_coord, char_coord in coordinates:
+                if lines[line_coord][char_coord] == "*":
+                    potential_gears_coord.setdefault(
+                        (line_coord, char_coord), []
+                    ).append(number)
+
+    for numbers in potential_gears_coord.values():
+        if len(numbers) == 2:
+            gears_ratios.append(math.prod(numbers))
+
+    return gears_ratios
 
 
 if __name__ == "__main__":

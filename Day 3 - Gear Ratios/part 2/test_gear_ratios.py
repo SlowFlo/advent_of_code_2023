@@ -1,4 +1,4 @@
-from gear_ratios import get_coordinates_to_check, get_part_numbers
+from gear_ratios import get_coordinates_to_check, get_part_numbers, get_gears_ratios
 
 
 def test_detect_coordinates_to_check():
