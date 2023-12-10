@@ -80,3 +80,7 @@ if __name__ == "__main__":
             "The sum of all of the part numbers in the engine schematic is:",
             sum(get_part_numbers(input_text)),
         )
+        print(
+            "The sum of all of the gear ratios in the engine schematic is:",
+            sum(get_gears_ratios(input_text)),
+        )
