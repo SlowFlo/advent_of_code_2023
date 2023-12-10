@@ -20,3 +20,16 @@ class Scratchcard:
             return 0
 
         return 2 ** (len(self.winning_numbers_i_have) - 1)
+
+
+class PileOfScratchcards:
+    def __init__(self, multi_lines_str: str):
+        self.cards = [Scratchcard(line) for line in multi_lines_str.splitlines()]
+
+    def get_total_points(self) -> int:
+        total_points = 0
+
+        for card in self.cards:
+            total_points += card.get_points()
+
+        return total_points
