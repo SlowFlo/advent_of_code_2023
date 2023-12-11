@@ -41,15 +41,12 @@ class PileOfScratchcards:
         return total_points
 
     def get_number_of_copies(self) -> dict[int, int]:
-        number_of_copies = {}
+        number_of_copies = {card.id: 1 for card in self.cards}
 
         for card in self.cards:
-            number_of_copies[card.id] = number_of_copies.setdefault(card.id, 0) + 1
             for _ in range(number_of_copies[card.id]):
                 for copy_id in card.get_copies_id():
-                    number_of_copies[copy_id] = (
-                        number_of_copies.setdefault(copy_id, 0) + 1
-                    )
+                    number_of_copies[copy_id] += 1
 
         return number_of_copies
 

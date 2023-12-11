@@ -63,3 +63,15 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"""
     pile = PileOfScratchcards(multi_lines_str)
     assert pile.get_number_of_copies() == {1: 1, 2: 2, 3: 4, 4: 8, 5: 14, 6: 1}
     assert sum(pile.get_number_of_copies().values()) == 30
+
+
+def test_get_number_of_copies():
+    multi_lines_str = """Card 1: 1 | 1
+Card 2: 1 2 3 | 1 2 3
+Card 3: 0 | 1
+Card 4: 0 | 1
+Card 5: 0 | 1"""
+
+    pile = PileOfScratchcards(multi_lines_str)
+    assert pile.get_number_of_copies() == {1: 1, 2: 2, 3: 3, 4: 3, 5: 3}
+    assert sum(pile.get_number_of_copies().values()) == 12
