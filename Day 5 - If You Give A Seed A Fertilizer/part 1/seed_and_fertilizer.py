@@ -5,3 +5,10 @@ def convert(num_id: int, table: str) -> int:
             return destination_start + num_id - source_start
 
     return num_id
+
+
+def seed_to_location(tables: str) -> int:
+    tables_list = tables.split("\n\n")
+    seed = int(tables_list[0].split()[1])
+    _, first_table = tables_list[1].split(":\n")
+    return convert(seed, first_table)
