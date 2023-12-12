@@ -1,4 +1,4 @@
-from seed_and_fertilizer import convert, seed_to_location
+from seed_and_fertilizer import convert, seeds_to_location
 
 
 def test_convert_when_not_in_range():
@@ -26,4 +26,14 @@ seed-to-soil map:
 50 98 2
 52 50 48"""
 
-    assert seed_to_location(input_file) == 81
+    assert seeds_to_location(input_file) == [81]
+
+
+def test_convert_several_seeds_through_one_map():
+    input_file = """seeds: 79 14 55 13
+
+seed-to-soil map:
+50 98 2
+52 50 48"""
+
+    assert seeds_to_location(input_file) == [81, 14, 57, 13]

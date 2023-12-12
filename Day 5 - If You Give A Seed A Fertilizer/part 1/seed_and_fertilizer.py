@@ -7,8 +7,13 @@ def convert(num_id: int, table: str) -> int:
     return num_id
 
 
-def seed_to_location(tables: str) -> int:
+def seeds_to_location(tables: str) -> list[int]:
     tables_list = tables.split("\n\n")
-    seed = int(tables_list[0].split()[1])
+    seeds = map(int, tables_list[0].split()[1:])
+
     _, first_table = tables_list[1].split(":\n")
-    return convert(seed, first_table)
+    locations = []
+    for seed in seeds:
+        locations.append(convert(seed, first_table))
+
+    return locations
