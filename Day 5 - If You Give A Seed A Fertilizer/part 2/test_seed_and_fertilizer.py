@@ -75,3 +75,28 @@ humidity-to-location map:
 56 93 4"""
 
     assert seeds_to_locations(input_file) == [82, 43, 86, 35]
+
+
+def test_1_range_through_1_map():
+    input_file = """seeds: 79 14
+
+seed-to-soil map:
+50 98 2
+52 50 48"""
+
+    assert range_of_seeds_to_locations(input_file) == [
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+    ]
