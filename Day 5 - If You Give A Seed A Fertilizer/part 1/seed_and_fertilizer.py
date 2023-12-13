@@ -11,9 +11,13 @@ def seeds_to_location(tables: str) -> list[int]:
     tables_list = tables.split("\n\n")
     seeds = map(int, tables_list[0].split()[1:])
 
-    _, first_table = tables_list[1].split(":\n")
+    tables_iterator = list(map(lambda x: x.split(":\n"), tables_list[1:]))
     locations = []
     for seed in seeds:
-        locations.append(convert(seed, first_table))
+        current_number_id = seed
+        for table in tables_iterator:
+            current_number_id = convert(current_number_id, table[1])
+
+        locations.append(current_number_id)
 
     return locations
