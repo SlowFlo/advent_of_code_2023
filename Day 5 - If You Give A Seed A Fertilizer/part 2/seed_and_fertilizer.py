@@ -41,4 +41,7 @@ def range_of_seeds_to_locations(tables: str) -> list[int]:
 if __name__ == "__main__":
     with open("../input.txt", "r") as file:
         input_text = file.read()
-        print("The lowest location number is", min(seeds_to_locations(input_text)))
+        print(
+            "The lowest location number for the ranges of seeds is",
+            min(range_of_seeds_to_locations(input_text)),
+        )
