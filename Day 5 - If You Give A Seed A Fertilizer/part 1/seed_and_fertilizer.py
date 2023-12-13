@@ -21,3 +21,9 @@ def seeds_to_location(tables: str) -> list[int]:
         locations.append(current_number_id)
 
     return locations
+
+
+if __name__ == "__main__":
+    with open("../input.txt", "r") as file:
+        input_text = file.read()
+        print("The lowest location number is", min(seeds_to_location(input_text)))
