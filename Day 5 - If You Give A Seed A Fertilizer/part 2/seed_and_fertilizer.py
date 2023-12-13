@@ -4,7 +4,9 @@ import re
 def convert(num_id: int, table: str) -> int:
     for line in table.splitlines():
         destination_start, source_start, range_length = map(int, line.split())
-        if num_id in range(source_start, source_start + range_length):
+        source_end = source_start + range_length
+
+        if source_start <= num_id < source_end:
             return destination_start + num_id - source_start
 
     return num_id
