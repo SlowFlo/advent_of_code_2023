@@ -13,11 +13,11 @@ def convert(num_id: int, table: str) -> int:
 
 
 def seeds_to_locations(seeds: list[int], tables_list: list[str]) -> list[int]:
-    tables_iterator = list(map(lambda x: x.split(":\n"), tables_list))
+    tables = [table.split(":\n") for table in tables_list]
     locations = []
     for seed in seeds:
         current_number_id = seed
-        for table in tables_iterator:
+        for table in tables:
             current_number_id = convert(current_number_id, table[1])
 
         locations.append(current_number_id)
@@ -30,12 +30,12 @@ def range_of_seeds_to_locations(tables: str) -> list[int]:
     seeds_ranges_description = re.findall(r"\d+ \d+", tables_list[0])
 
     seeds_ranges = [
-        list(map(int, seed_range_description.split()))
+        [int(i) for i in seed_range_description.split()]
         for seed_range_description in seeds_ranges_description
     ]
     seeds = []
-    for seed_range in seeds_ranges:
-        seeds += list(range(seed_range[0], seed_range[0] + seed_range[1]))
+    for start, length in seeds_ranges:
+        seeds.extend(range(start, start + length))
 
     return seeds_to_locations(seeds, tables_list[1:])
 
