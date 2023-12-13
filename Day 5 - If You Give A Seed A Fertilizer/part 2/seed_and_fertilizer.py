@@ -1,4 +1,5 @@
 import re
+from typing import Iterable
 
 
 def convert(num_id: int, table: str) -> int:
@@ -12,7 +13,7 @@ def convert(num_id: int, table: str) -> int:
     return num_id
 
 
-def seeds_to_locations(seeds: list[int], tables_list: list[str]) -> list[int]:
+def seeds_to_locations(seeds: Iterable[int], tables_list: list[str]) -> list[int]:
     tables = [table.split(":\n") for table in tables_list]
     locations = []
     for seed in seeds:
@@ -30,14 +31,14 @@ def range_of_seeds_to_locations(tables: str) -> list[int]:
     seeds_ranges_description = re.findall(r"\d+ \d+", tables_list[0])
 
     seeds_ranges = [
-        [int(i) for i in seed_range_description.split()]
-        for seed_range_description in seeds_ranges_description
+        (int(srd.split()[0]), int(srd.split()[1])) for srd in seeds_ranges_description
     ]
-    seeds = []
-    for start, length in seeds_ranges:
-        seeds.extend(range(start, start + length))
 
-    return seeds_to_locations(seeds, tables_list[1:])
+    seeds_generator = (
+        i for start, length in seeds_ranges for i in range(start, start + length)
+    )
+
+    return seeds_to_locations(seeds_generator, tables_list[1:])
 
 
 if __name__ == "__main__":
