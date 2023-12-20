@@ -1,46 +1,45 @@
-from seed_and_fertilizer import convert, seeds_to_locations, range_of_seeds_to_locations
+from seed_and_fertilizer import (
+    RangeMapper,
+    apply_range_transformations,
+    get_min_location,
+)
 
 
-def test_convert_when_not_in_range():
+def test_mapper_transform_when_starting_range_in_table_ranges():
     table = """50 98 2
 52 50 48"""
 
-    assert convert(0, table) == 0
-    assert convert(1, table) == 1
-    assert convert(30, table) == 30
+    mapper = RangeMapper(table)
+
+    assert mapper.transform_ranges(range(79, 93)) == [range(81, 95)]
+    assert mapper.transform_ranges(range(55, 68)) == [range(57, 70)]
 
 
-def test_convert_when_in_range():
-    table = """50 98 2
-52 50 48"""
+def test_mapper_transform_when_starting_range_not_mapped():
+    table = """0 15 37
+37 52 2
+39 0 15"""
 
-    assert convert(98, table) == 50
-    assert convert(99, table) == 51
-    assert convert(61, table) == 63
+    mapper = RangeMapper(table)
 
-
-def test_convert_one_seed_through_one_map():
-    tables_list = [
-        """seed-to-soil map:
-50 98 2
-52 50 48"""
-    ]
-
-    assert seeds_to_locations([79], tables_list) == [81]
+    assert mapper.transform_ranges(range(81, 95)) == [range(81, 95)]
+    assert mapper.transform_ranges(range(57, 70)) == [range(57, 70)]
 
 
-def test_convert_several_seeds_through_one_map():
-    tables_list = [
-        """seed-to-soil map:
-50 98 2
-52 50 48""",
-    ]
+def test_mapper_transform_when_only_a_part_of_starting_range_mapped():
+    table = """49 53 8
+0 11 42
+42 0 7
+57 7 4"""
 
-    assert seeds_to_locations([79, 14, 55, 13], tables_list) == [81, 14, 57, 13]
+    mapper = RangeMapper(table)
+
+    assert mapper.transform_ranges(range(81, 95)) == [range(81, 95)]
+    assert mapper.transform_ranges(range(57, 70)) == [range(53, 57), range(61, 70)]
 
 
-def test_convert_several_seeds_through_several_maps():
-    tables_list = [
+def test_proceed_seeds_ranges_on_3_successive_tables():
+    tables = [
         """seed-to-soil map:
 50 98 2
 52 50 48""",
@@ -53,51 +52,17 @@ def test_convert_several_seeds_through_several_maps():
 0 11 42
 42 0 7
 57 7 4""",
-        """water-to-light map:
-88 18 7
-18 25 70""",
-        """light-to-temperature map:
-45 77 23
-81 45 19
-68 64 13""",
-        """temperature-to-humidity map:
-0 69 1
-1 0 69""",
-        """humidity-to-location map:
-60 56 37
-56 93 4""",
     ]
 
-    assert seeds_to_locations([79, 14, 55, 13], tables_list) == [82, 43, 86, 35]
-
-
-def test_1_range_through_1_map():
-    input_file = """seeds: 79 14
-
-seed-to-soil map:
-50 98 2
-52 50 48"""
-
-    assert range_of_seeds_to_locations(input_file) == [
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
+    assert apply_range_transformations(tables, [range(79, 93), range(55, 68)]) == [
+        range(81, 95),
+        range(53, 57),
+        range(61, 70),
     ]
 
 
-def test_2_ranges_through_several_maps():
-    input_file = """seeds: 79 14 55 13
+def test_get_min_location_on_example():
+    input_txt = """seeds: 79 14 55 13
 
 seed-to-soil map:
 50 98 2
@@ -131,32 +96,4 @@ humidity-to-location map:
 60 56 37
 56 93 4"""
 
-    assert range_of_seeds_to_locations(input_file) == [
-        82,
-        83,
-        84,
-        46,
-        47,
-        48,
-        49,
-        50,
-        51,
-        52,
-        53,
-        54,
-        55,
-        60,
-        86,
-        87,
-        88,
-        89,
-        94,
-        95,
-        96,
-        56,
-        57,
-        58,
-        59,
-        97,
-        98,
-    ]
+    assert get_min_location(input_txt) == 46
