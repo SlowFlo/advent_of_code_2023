@@ -3,13 +3,13 @@ from scratchcards import Scratchcard, PileOfScratchcards
 
 def test_get_winning_and_i_have_numbers():
     card = Scratchcard("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53")
-    assert card.winning_numbers == {41, 48, 83, 86, 17}
-    assert card.numbers_i_have == {83, 86, 6, 31, 17, 9, 48, 53}
+    assert card.winning_numbers == {"48", "41", "83", "86", "17"}
+    assert card.numbers_i_have == {"9", "53", "6", "17", "86", "83", "31", "48"}
 
 
 def test_get_winning_numbers_i_have():
     card = Scratchcard("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53")
-    assert card.winning_numbers_i_have == {48, 83, 17, 86}
+    assert card.winning_numbers_i_have == {"86", "48", "83", "17"}
 
     card = Scratchcard("Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36")
     assert card.winning_numbers_i_have == set()

@@ -7,10 +7,10 @@ class Scratchcard:
 
         self.id = int(card_id.split()[1])
         self.winning_numbers = set(
-            int(winning_number) for winning_number in winning_numbers.split()
+            winning_number for winning_number in winning_numbers.split()
         )
         self.numbers_i_have = set(
-            int(numbers_i_have) for numbers_i_have in numbers_i_have.split()
+            numbers_i_have for numbers_i_have in numbers_i_have.split()
         )
         self.winning_numbers_i_have = self.winning_numbers.intersection(
             self.numbers_i_have
